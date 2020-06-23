@@ -1,14 +1,39 @@
 # flutter_mongo_stitch_web
 
-A new Flutter package project.
+The web implementation of [flutter_mongo_stitch](https://github.com/kfiross/flutter_mongo_stitch)
 
-## Getting Started
+## Usage
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+### Import the package
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+This package is the endorsed implementation of `flutter_mongo_stitch` for the web platform since version `0.7.1`, so it gets automatically added to your dependencies by depending on `flutter_mongo_stitch: ^4.1.0`.
+
+No modifications to your pubspec.yaml should be required in a recent enough version of Flutter (`>=1.12.13+hotfix.4`):
+
+```yaml
+...
+dependencies:
+  ...
+  flutter_mongo_stitch: ^0.7.1
+  ...
+...
+```
+
+
+## Web integration
+
+On your `web/index.html` file, add the following `script` tags, somewhere in the
+`head` of the document:
+
+```html
+<head>
+... other configurations
+
+    <!-- Importing the official MongoStitch Javascript Browser SDK-->
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js"></script>
+    
+    <!-- Importing the file that connects between dart & js implementations used by the web plugin-->
+    <script src='https://fluttermongostitch.s3.us-east-2.amazonaws.com/stitchUtils.js'></script>
+
+</head>
+```
