@@ -21,19 +21,4 @@ dependencies:
 
 
 ## Web integration
-
-On your `web/index.html` file, add the following `script` tags, somewhere in the
-`head` of the document:
-
-```html
-<head>
-... other configurations
-
-    <!-- Importing the official MongoStitch Javascript Browser SDK-->
-    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js"></script>
-    
-    <!-- Importing the file that connects between dart & js implementations used by the web plugin-->
-    <script src='https://fluttermongostitch.s3.us-east-2.amazonaws.com/stitchUtils.js'></script>
-
-</head>
-```
+Done under the hood :)

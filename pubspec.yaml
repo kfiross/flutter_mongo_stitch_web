@@ -1,6 +1,6 @@
 name: flutter_mongo_stitch_web
 description: The web implementation of flutter_mongo_stitch plugin
-version: 0.1.1+a
+version: 0.2.0
 homepage: https://github.com/kfiross/flutter_mongo_stitch_platform_interface
 
 environment:
