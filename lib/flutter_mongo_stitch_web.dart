@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'package:flutter_mongo_stitch_platform_interface/flutter_mongo_stitch_platform_interface.dart';
+import 'package:flutter_mongo_stitch_web/utils.dart';
 import 'implementation.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
@@ -13,105 +14,20 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 ///
 /// This class implements the `package:flutter_mongo_stitch` functionality for the web.
 class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
+  FlutterMongoStitchPlugin(){
+    // Inject the desired libraries
+    injectJSLibraries([
+      "https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js",
+      "https://fluttermongostitch.s3.us-east-2.amazonaws.com/stitchUtils.js"
+    ]);
+  }
+
   static void registerWith(Registrar registrar) /*async*/ {
-    /// Registers this class as the default instance of [FlutterMongoStitchPlatform]
+    // Registers this class as the default instance of [FlutterMongoStitchPlatform]
     FlutterMongoStitchPlatform.instance = FlutterMongoStitchPlugin();
-//    final MethodChannel channel = MethodChannel(
-//      'flutter_mongo_stitch',
-//      const StandardMethodCodec(),
-//      registrar.messenger,
-//    );
-//
-//    final instance = FlutterMongoStitchPlugin();
-//    channel.setMethodCallHandler(instance.handleMethodCall);
   }
 
   var _mongoClient = MyMongoClient();
-
-//  Future<dynamic> handleMethodCall(MethodCall call) async {
-//    switch (call.method) {
-//    /// WEB-specific solutions
-//      case "setupWatchCollection":
-//        _setupWatchCollection(call);
-//        return;
-//
-//      case 'connectMongo':
-//        return _connectMongo(call);
-//
-//    // Database
-//      case 'insertDocument':
-//        return await _insertDocument(call);
-//
-//      case 'insertDocuments':
-//        return await _insertDocuments(call);
-//
-//      case 'deleteDocument':
-//        return await _deleteDocument(call);
-//
-//      case 'deleteDocuments':
-//        return await _deleteDocuments(call);
-//
-//      case 'findDocuments':
-//        return await _findDocuments(call);
-//
-//      case 'findDocument':
-//        return await _findDocument(call);
-//
-//      case 'countDocuments':
-//        return await _countDocuments(call);
-//
-//      case 'updateDocument':
-//        return await _updateDocument(call);
-//
-//      case 'updateDocuments':
-//        return await _updateDocuments(call);
-//
-//      case 'aggregate':
-//        return await _aggregate(call);
-//
-//
-//    // Auth
-//      case 'signInAnonymously':
-//        return await _signInAnonymously();
-//
-//      case 'signInWithUsernamePassword':
-//        return await _signInWithUsernamePassword(call);
-//
-//      case 'signInWithGoogle':
-//        return await _signInWithGoogle(call);
-//
-//      case 'signInWithFacebook':
-//        return await _signInWithFacebook(call);
-//
-//    //
-//      case 'registerWithEmail':
-//        return await _registerWithEmail(call);
-//
-//      case 'logout':
-//        return await _logout();
-//
-//      case 'getUserId':
-//        return await _getUserId();
-//
-//      case 'getUser':
-//        return await _getUser();
-//
-//      case 'sendResetPasswordEmail':
-//        return await _sendResetPasswordEmail(call);
-//
-//
-//    // Stitch Functions
-//      case 'callFunction':
-//        return await _callFunction(call);
-//
-//
-//      default:
-//        throw PlatformException(
-//            code: 'Unimplemented',
-//            details: "The plugin for web doesn't implement "
-//                "the method '${call.method}'");
-//    }
-//  }
 
 
   @override
