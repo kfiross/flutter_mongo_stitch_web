@@ -65,12 +65,10 @@ packages:
   flutter_mongo_stitch_platform_interface:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: f2d7c271c0fc6443d151f57e1b773ebd9815d907
-      url: "https://github.com/kfiross/flutter_mongo_stitch_platform_interface.git"
-    source: git
-    version: "0.0.1"
+      name: flutter_mongo_stitch_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+a"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -207,3 +205,4 @@ packages:
     version: "3.6.1"
 sdks:
   dart: ">=2.7.0 <3.0.0"
+  flutter: ">=1.10.0 <2.0.0"
