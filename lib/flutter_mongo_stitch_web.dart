@@ -37,6 +37,7 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
 
   @override
   Future connectToMongo(String appId) async{
+    await _init();
     _mongoClient.connectMongo(appId);
     return Future.value(true);
   }
