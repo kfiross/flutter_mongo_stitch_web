@@ -1,6 +1,6 @@
 name: flutter_mongo_stitch_web
 description: The web implementation of flutter_mongo_stitch plugin
-version: 0.2.1
+version: 0.3.0-dev.1
 homepage: https://github.com/kfiross/flutter_mongo_stitch_platform_interface
 
 environment:
@@ -16,7 +16,7 @@ dependencies:
   # For supporting web sdk and js-dart inter-op
   js: ^0.6.2
 
-  flutter_mongo_stitch_platform_interface: ^1.0.0
+  flutter_mongo_stitch_platform_interface: ^1.2.0
 
 dev_dependencies:
   flutter_test:

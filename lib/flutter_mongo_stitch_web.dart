@@ -22,8 +22,8 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
     FlutterMongoStitchPlatform.instance = FlutterMongoStitchPlugin();
   }
 
-  Future<void> _init() async{
-    if(!_injected) {
+  Future<void> _init() async {
+    if (!_injected) {
       // Inject the desired libraries
       await injectJSLibraries([
         "https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js",
@@ -34,9 +34,8 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
     }
   }
 
-
   @override
-  Future connectToMongo(String appId) async{
+  Future connectToMongo(String appId) async {
     await _init();
     _mongoClient.connectMongo(appId);
     return Future.value(true);
@@ -66,25 +65,35 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
 
   @override
   Future findDocuments(
-      {String collectionName, String databaseName, dynamic filter,
-        String projection, int limit, String sort}) async {
-    var list = await _mongoClient.findDocuments(databaseName, collectionName, filter);
+      {String collectionName,
+      String databaseName,
+      dynamic filter,
+      String projection,
+      int limit,
+      String sort}) async {
+    var list =
+        await _mongoClient.findDocuments(databaseName, collectionName, filter);
     return Future.value(list);
   }
 
   @override
   Future findFirstDocument(
-      {String collectionName, String databaseName, dynamic filter, String projection}) async {
+      {String collectionName,
+      String databaseName,
+      dynamic filter,
+      String projection}) async {
     //todo, ADD: final String projection = call.arguments['projection'];
 
-    var list = await _mongoClient.findDocument(databaseName, collectionName, filter);
+    var list =
+        await _mongoClient.findDocument(databaseName, collectionName, filter);
     return Future.value(list);
   }
 
   @override
   Future deleteDocument(
       {String collectionName, String databaseName, dynamic filter}) async {
-    String resultString =  await _mongoClient.deleteDocument(databaseName, collectionName, filter);
+    String resultString =
+        await _mongoClient.deleteDocument(databaseName, collectionName, filter);
     Map<String, dynamic> map = json.decode(resultString);
 
     return Future.value(map["deletedCount"]);
@@ -93,7 +102,8 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   @override
   Future deleteDocuments(
       {String collectionName, String databaseName, dynamic filter}) async {
-    String resultString =  await _mongoClient.deleteDocuments(databaseName, collectionName, filter);
+    String resultString = await _mongoClient.deleteDocuments(
+        databaseName, collectionName, filter);
     Map<String, dynamic> map = json.decode(resultString);
 
     return Future.value(map["deletedCount"]);
@@ -102,33 +112,35 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   @override
   Future countDocuments(
       {String collectionName, String databaseName, dynamic filter}) async {
-    var size = await _mongoClient.countDocuments(databaseName, collectionName, filter);
+    var size =
+        await _mongoClient.countDocuments(databaseName, collectionName, filter);
     return Future.value(size);
   }
 
   @override
   Future updateDocument(
       {String collectionName,
-        String databaseName,
-        String filter,
-        String update}) async {
-    String resultString = await _mongoClient.updateDocument(databaseName, collectionName, filter, update);
+      String databaseName,
+      String filter,
+      String update}) async {
+    String resultString = await _mongoClient.updateDocument(
+        databaseName, collectionName, filter, update);
     Map<String, dynamic> map = json.decode(resultString);
 
-    return Future.value(<int>[map["matchedCount"] , map["modifiedCount"]]);
+    return Future.value(<int>[map["matchedCount"], map["modifiedCount"]]);
   }
 
   @override
   Future updateDocuments(
       {String collectionName,
-        String databaseName,
-        String filter,
-        String update}) async {
-
-    String resultString = await _mongoClient.updateDocuments(databaseName, collectionName, filter, update);
+      String databaseName,
+      String filter,
+      String update}) async {
+    String resultString = await _mongoClient.updateDocuments(
+        databaseName, collectionName, filter, update);
     Map<String, dynamic> map = json.decode(resultString);
 
-    return Future.value(<int>[map["matchedCount"] , map["modifiedCount"]]);
+    return Future.value(<int>[map["matchedCount"], map["modifiedCount"]]);
   }
 
   /// ===========
@@ -142,7 +154,8 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   @override
   Future/*<CoreStitchUser>*/ signInWithUsernamePassword(
       String username, String password) async {
-    var authResult = await _mongoClient.signInWithUsernamePassword(username, password);
+    var authResult =
+        await _mongoClient.signInWithUsernamePassword(username, password);
     return Future.value(authResult);
   }
 
@@ -155,6 +168,18 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
 //  Future/*<CoreStitchUser>*/ signInWithFacebook(String accessToken) async{
 //    throw UnimplementedError('signInWithFacebook() has not been implemented.');
 //  }
+
+  @override
+  Future signInWithCustomJwt(String accessToken) async {
+    var authResult = await _mongoClient.signInWithCustomJwt(accessToken);
+    return Future.value(authResult);
+  }
+
+  @override
+  Future signInWithCustomFunction(String json) async {
+    var authResult = await _mongoClient.signInWithCustomFunction(json);
+    return Future.value(authResult);
+  }
 
   @override
   Future logout() async {
@@ -175,7 +200,7 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   }
 
   @override
-  Future/*<CoreStitchUser>*/ getUser() async{
+  Future/*<CoreStitchUser>*/ getUser() async {
     var authResult = await _mongoClient.getUser();
     return Future.value(authResult);
   }
@@ -189,22 +214,22 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   /// =====
 
   @override
-  Future callFunction(String name, {List args, int requestTimeout}) async{
-    var result = _mongoClient.callFunction(name, args);//, timeout);
+  Future callFunction(String name, {List args, int requestTimeout}) async {
+    var result = _mongoClient.callFunction(name, args); //, timeout);
     return Future.value(result);
   }
 
   @override
-  Future setupWatchCollection(String collectionName, String databaseName, {List<String> ids, bool asObjectIds, String filter}){
-    if(filter == null) {
+  Future setupWatchCollection(String collectionName, String databaseName,
+      {List<String> ids, bool asObjectIds, String filter}) {
+    if (filter == null) {
       if (ids == null || ids.isEmpty) {
         _mongoClient.setupWatchCollection(databaseName, collectionName);
+      } else {
+        _mongoClient.setupWatchCollection(
+            databaseName, collectionName, [ids, asObjectIds]);
       }
-      else {
-        _mongoClient.setupWatchCollection(databaseName, collectionName, [ids, asObjectIds]);
-      }
-    }
-    else {
+    } else {
       _mongoClient.setupWatchCollection(databaseName, collectionName, filter);
     }
 
