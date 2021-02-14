@@ -88,7 +88,7 @@ class MyMongoClient {
       String databaseName, String collectionName, List listData) async {
     var map = await promiseToFuture(
         _mongo.insertDocuments(databaseName, collectionName, listData));
-    return map;
+    return jsonDecode(map);
   }
 
   Future deleteDocument(
