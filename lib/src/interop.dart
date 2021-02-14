@@ -77,18 +77,18 @@ class MyMongoClient {
 
   //////
 
-  Future<bool> insertDocument(
+  Future<String> insertDocument(
       String databaseName, String collectionName, Map data) async {
-    await promiseToFuture(
+    var result = await promiseToFuture(
         _mongo.insertDocument(databaseName, collectionName, json.encode(data)));
-    return true;
+    return result;
   }
 
-  Future<bool> insertDocuments(
+  Future<Map> insertDocuments(
       String databaseName, String collectionName, List listData) async {
-    await promiseToFuture(
+    var map = await promiseToFuture(
         _mongo.insertDocuments(databaseName, collectionName, listData));
-    return true;
+    return map;
   }
 
   Future deleteDocument(
