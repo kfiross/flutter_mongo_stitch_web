@@ -62,7 +62,7 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   }) async {
     var map =
         await _mongoClient.insertDocuments(databaseName, collectionName, list);
-    return Future.value(map);
+    return Future.value(map.map<int,String>((key, value) => MapEntry<int,String>(int.parse(key), value)));
   }
 
   @override
