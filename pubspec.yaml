@@ -15,9 +15,6 @@ dependencies:
 
   # For supporting web sdk and js-dart inter-op
   js: ^0.6.2
-
-  bson: ^0.3.4
-
   flutter_mongo_stitch_platform_interface: ^1.2.0
 
 dev_dependencies:

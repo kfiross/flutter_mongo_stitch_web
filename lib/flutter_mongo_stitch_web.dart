@@ -2,7 +2,6 @@ library flutter_mongo_stitch_web;
 
 import 'dart:convert';
 
-import 'package:bson/bson.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mongo_stitch_platform_interface/flutter_mongo_stitch_platform_interface.dart';
 
@@ -52,7 +51,7 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   }) async {
     var id =
         await _mongoClient.insertDocument(databaseName, collectionName, data);
-    return Future.value(ObjectId.parse(id));
+    return Future.value(id);
   }
 
   @override
