@@ -1,3 +1,6 @@
+## [0.3.1+1]
+* Optimized code.
+
 ## [0.3.1]
 * Updated `insertOne` and `insertMany` to return results of inserted ids.
 
@@ -6,10 +9,10 @@
 * Added `Custom Function` auth provider.
 
 ## [0.2.1]
-* fixed bug when used on as endorsed plugin the general plugin.
+* fixed a bug when used on as endorsed plugin the general plugin.
 
 ## [0.2.0]
-* js library are injected through dart.
+* js library injected through dart.
 
 ## [0.1.1]
 * Fixed bugs.

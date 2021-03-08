@@ -144,7 +144,6 @@ class MyMongoClient {
 
   Future<Map> loginAnonymously() async {
     String result = await promiseToFuture(_mongo.loginAnonymously());
-    print(result);
     Map userMap = json.decode(result);
     return {"id": userMap['id']};
   }
@@ -153,28 +152,24 @@ class MyMongoClient {
       String username, String password) async {
     String result = await promiseToFuture(
         _mongo.signInWithUsernamePassword(username, password));
-    print(result);
     Map userMap = json.decode(result);
     return {"id": userMap['id']};
   }
 
   Future<Map> signInWithGoogle(String authCode) async {
     String result = await promiseToFuture(_mongo.signInWithGoogle(authCode));
-    print(result);
     Map userMap = json.decode(result);
     return {"id": userMap['id']};
   }
 
   Future<Map> signInWithFacebook(String token) async {
     String result = await promiseToFuture(_mongo.signInWithFacebook(token));
-    print(result);
     Map userMap = json.decode(result);
     return {"id": userMap['id']};
   }
 
   Future<Map> signInWithCustomJwt(String token) async {
     String result = await promiseToFuture(_mongo.signInWithCustomJwt(token));
-    print(result);
     Map userMap = json.decode(result);
     return {"id": userMap['id']};
   }
@@ -182,7 +177,6 @@ class MyMongoClient {
   Future<Map> signInWithCustomFunction(String jsonData) async {
     String result =
         await promiseToFuture(_mongo.signInWithCustomFunction(jsonData));
-    print(result);
     Map userMap = json.decode(result);
     return {"id": userMap['id']};
   }
