@@ -4,7 +4,7 @@ import 'dart:html' as html;
 /// Injects a bunch of libraries in the <head> and returns a
 /// Future that resolves when all load.
 Future<void> injectJSLibraries(List<String> libraries,
-    {html.HtmlElement target /*, Duration timeout */
+    {html.HtmlElement? target /*, Duration timeout */
     }) {
   final List<Future<void>> loading = <Future<void>>[];
   final List<html.HtmlElement> tags = <html.HtmlElement>[];
@@ -18,6 +18,6 @@ Future<void> injectJSLibraries(List<String> libraries,
     loading.add(script.onLoad.first);
     tags.add(script);
   });
-  (target ?? html.querySelector('head')).children.addAll(tags);
+  (target ?? html.querySelector('head'))!.children.addAll(tags);
   return Future.wait(loading);
 }

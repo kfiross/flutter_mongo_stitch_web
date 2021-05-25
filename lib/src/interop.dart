@@ -19,25 +19,25 @@ class Mongo {
       String databaseName, String collectionName, List listData);
 
   external deleteDocument(
-      String databaseName, String collectionName, String filter);
+      String? databaseName, String? collectionName, String? filter);
 
   external deleteDocuments(
-      String databaseName, String collectionName, String filter);
+      String? databaseName, String? collectionName, String? filter);
 
   external findDocument(
-      String databaseName, String collectionName, String filter);
+      String? databaseName, String? collectionName, String? filter);
 
   external findDocuments(
-      String databaseName, String collectionName, String filter);
+      String? databaseName, String? collectionName, String? filter);
 
   external countDocuments(
-      String databaseName, String collectionName, String filter);
+      String? databaseName, String? collectionName, String? filter);
 
   external updateDocument(
-      String databaseName, String collectionName, String filter, String update);
+      String? databaseName, String? collectionName, String? filter, String? update);
 
   external updateDocuments(
-      String databaseName, String collectionName, String filter, String update);
+      String? databaseName, String? collectionName, String? filter, String? update);
 
   external loginAnonymously();
 
@@ -61,7 +61,7 @@ class Mongo {
 
   external sendResetPasswordEmail(String email);
 
-  external callFunction(String name, List args); //, int timeout);
+  external callFunction(String name, List? args); //, int timeout);
 
   ///STREAM SOLUTION
   external setupWatchCollection(
@@ -84,7 +84,7 @@ class MyMongoClient {
     return result;
   }
 
-  Future<Map> insertDocuments(
+  Future<Map?> insertDocuments(
       String databaseName, String collectionName, List listData) async {
     var map = await promiseToFuture(
         _mongo.insertDocuments(databaseName, collectionName, listData));
@@ -92,49 +92,49 @@ class MyMongoClient {
   }
 
   Future deleteDocument(
-      String databaseName, String collectionName, String filter) async {
+      String? databaseName, String? collectionName, String? filter) async {
     var result = await promiseToFuture(
         _mongo.deleteDocument(databaseName, collectionName, filter));
     return result;
   }
 
   Future deleteDocuments(
-      String databaseName, String collectionName, String filter) async {
+      String? databaseName, String? collectionName, String? filter) async {
     var result = await promiseToFuture(
         _mongo.deleteDocuments(databaseName, collectionName, filter));
     return result;
   }
 
   Future<String> findDocument(
-      String databaseName, String collectionName, String filter) async {
+      String? databaseName, String? collectionName, String? filter) async {
     var docs = await promiseToFuture(
         _mongo.findDocument(databaseName, collectionName, filter));
     return docs;
   }
 
   Future<List<dynamic>> findDocuments(
-      String databaseName, String collectionName, String filter) async {
+      String? databaseName, String? collectionName, String? filter) async {
     var docs = await promiseToFuture(
         _mongo.findDocuments(databaseName, collectionName, filter));
     return docs;
   }
 
   Future<int> countDocuments(
-      String databaseName, String collectionName, String filter) async {
+      String? databaseName, String? collectionName, String? filter) async {
     var docsCount = await promiseToFuture(
         _mongo.countDocuments(databaseName, collectionName, filter));
     return docsCount;
   }
 
-  Future updateDocument(String databaseName, String collectionName,
-      String filter, String update) async {
+  Future updateDocument(String? databaseName, String? collectionName,
+      String? filter, String? update) async {
     var docsUpdatedCount = await promiseToFuture(
         _mongo.updateDocument(databaseName, collectionName, filter, update));
     return docsUpdatedCount;
   }
 
-  Future updateDocuments(String databaseName, String collectionName,
-      String filter, String update) async {
+  Future updateDocuments(String? databaseName, String? collectionName,
+      String? filter, String? update) async {
     var docsUpdatedCount = await promiseToFuture(
         _mongo.updateDocuments(databaseName, collectionName, filter, update));
     return docsUpdatedCount;
@@ -194,9 +194,9 @@ class MyMongoClient {
 
   Future<String> getUserId() async => await promiseToFuture(_mongo.getUserId());
 
-  Future<Map> getUser() async {
+  Future<Map?> getUser() async {
     String result = await promiseToFuture(_mongo.getUser());
-    Map userMap = json.decode(result);
+    Map? userMap = json.decode(result);
     return userMap;
   }
 
@@ -205,7 +205,7 @@ class MyMongoClient {
     return true;
   }
 
-  Future callFunction(String name, List args /*, int timeout*/) async {
+  Future callFunction(String name, List? args /*, int timeout*/) async {
     var result =
         await promiseToFuture(_mongo.callFunction(name, args /*, timeout*/));
     return result;

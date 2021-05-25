@@ -1,5 +1,11 @@
-## [0.3.1+1]
+## [1.0.0-nullsafety.0]
+* Migrate into Null-Safety
+
+## [0.3.2+1]
 * Optimized code.
+
+## [0.3.2]
+* Fixed `pub.dev` score.
 
 ## [0.3.1]
 * Updated `insertOne` and `insertMany` to return results of inserted ids.
