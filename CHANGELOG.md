@@ -1,3 +1,6 @@
+## [1.0.0-nullsafety.1]
+* Fixes after Null-Safety
+
 ## [1.0.0-nullsafety.0]
 * Migrate into Null-Safety
 
