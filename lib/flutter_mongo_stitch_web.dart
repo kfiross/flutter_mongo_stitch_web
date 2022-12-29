@@ -2,7 +2,6 @@ library flutter_mongo_stitch_web;
 
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_mongo_stitch_platform_interface/flutter_mongo_stitch_platform_interface.dart';
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -27,7 +26,7 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
       // Inject the desired libraries
       await injectJSLibraries([
         "https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js",
-        "https://fluttermongostitch.s3.us-east-2.amazonaws.com/stitchUtils.js"
+        "https://mkqerrzgldvzwtntkzhr.supabase.co/storage/v1/object/public/mati-apps/stitchUtils.js?t=2022-12-29T10%3A18%3A20.399Z"
       ]);
       _mongoClient = MyMongoClient();
       _injected = true;
@@ -47,7 +46,7 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   Future insertDocument({
     required String collectionName,
     required String databaseName,
-    required Map<String, Object> data,
+    required Map<String, Object?> data,
   }) async {
     var id =
         await _mongoClient.insertDocument(databaseName, collectionName, data);
@@ -84,7 +83,7 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
       String? databaseName,
       dynamic filter,
       String? projection}) async {
-    //todo, ADD: final String projection = call.arguments['projection'];
+    //TODO: ADD: final String projection = call.arguments['projection'];
 
     var list =
         await _mongoClient.findDocument(databaseName, collectionName, filter);
