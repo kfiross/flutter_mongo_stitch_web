@@ -26,7 +26,8 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
       // Inject the desired libraries
       await injectJSLibraries([
         "https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js",
-        "https://mkqerrzgldvzwtntkzhr.supabase.co/storage/v1/object/public/mati-apps/stitchUtils.js?t=2022-12-29T10%3A18%3A20.399Z"
+        "https://unpkg.com/realm-web@1.5.1/dist/bundle.iife.js",
+        "https://mkqerrzgldvzwtntkzhr.supabase.co/storage/v1/object/public/mati-apps/stitchUtils.js"
       ]);
       _mongoClient = MyMongoClient();
       _injected = true;
@@ -183,6 +184,12 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   }
 
   @override
+  Future linkCredentials(Map<String, Object> credsJson) async{
+    var authResult = await _mongoClient.linkCredentials(json.encode(credsJson));
+    return Future.value(authResult);
+  }
+
+  @override
   Future logout() async {
     await _mongoClient.logout();
     return Future.value(true);
@@ -192,6 +199,18 @@ class FlutterMongoStitchPlugin extends FlutterMongoStitchPlatform {
   Future getUserId() async {
     var id = await _mongoClient.getUserId();
     return Future.value(id);
+  }
+
+  @override
+  Future getAccessToken() async{
+    var token = await _mongoClient.getAccessToken();
+    return Future.value(token);
+  }
+
+  @override
+  Future getRefreshToken() async{
+    var token = await _mongoClient.getRefreshToken();
+    return Future.value(token);
   }
 
   @override

@@ -53,9 +53,15 @@ class Mongo {
 
   external registerWithEmail(String username, String password);
 
+  external linkCredentials(String credJson);
+
   external logout();
 
   external getUserId();
+
+  external getAccessToken();
+
+  external getRefreshToken();
 
   external getUser();
 
@@ -187,12 +193,22 @@ class MyMongoClient {
     return true;
   }
 
+  Future<Map> linkCredentials(String credJson) async {
+    String result = await promiseToFuture(_mongo.linkCredentials(credJson));
+    Map userMap = json.decode(result);
+    return {"id": userMap['id']};
+  }
+
   Future<bool> logout() async {
     await promiseToFuture(_mongo.logout());
     return true;
   }
 
   Future<String> getUserId() async => await promiseToFuture(_mongo.getUserId());
+
+  Future<String> getAccessToken() async => await promiseToFuture(_mongo.getAccessToken());
+
+  Future<String> getRefreshToken() async => await promiseToFuture(_mongo.getRefreshToken());
 
   Future<Map?> getUser() async {
     String result = await promiseToFuture(_mongo.getUser());

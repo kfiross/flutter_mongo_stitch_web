@@ -1,5 +1,12 @@
+## [1.2.0]
+* added support for `getRefreshToken` and `getAccessToken`
+
+## [1.1.0+1]
+* Fixed bug with `setupWatchCollection` returning `null`
+
 ## [1.1.0]
 * Fixed bug with `setupWatchCollection` returning `null`
+
 ## [1.0.0-nullsafety.1]
 * Fixes after Null-Safety
 
